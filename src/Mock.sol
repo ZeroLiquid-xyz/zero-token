@@ -3,6 +3,8 @@ pragma solidity >=0.8.19;
 
 import "openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
+/// @title Mock
+/// @author @ZackZeroLiquid
 contract Mock is ERC20Burnable {
     // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
     bytes32 private constant EIP712DOMAIN_HASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;
