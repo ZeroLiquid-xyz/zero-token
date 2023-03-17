@@ -58,10 +58,6 @@ contract Mock is ERC20Burnable {
         }
     }
 
-    function mint(address to, uint256 value) external {
-        _mint(to, value);
-    }
-
     function permit(
         address owner,
         address spender,

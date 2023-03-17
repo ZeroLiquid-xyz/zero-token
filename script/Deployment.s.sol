@@ -7,13 +7,13 @@ import { Mock } from "../src/Mock.sol";
 contract Deployment is Script {
     Mock internal mock;
 
-    address public constant liquidity = 0xbFb88f83eCc626ec8384eFEbb69B5bF605d03c26;
-    address public constant foundation = 0x7fB8A16a467BbdFec3A8374720A688A3F1Fc0168;
-    address public constant developmentMarketing = 0x9FadE1CD465d4376d24dC2a7397F3C89Ab1735CC;
-    address public constant developmentVesting = 0x5f60Cc23857d6812e10028a3780e88Ee1b7A29f4;
-    address public constant governanceVesting = 0xB9FeCAC77498776E6aFc3eE00e1dD3f5230bdE20;
-    address public constant incentiveVesting = 0x7665deB06e92d87498A76526a75c9151FF9125EF;
-    address public constant contributersVesting = 0x3de28bD25F1F80DDA240DD0ABDF9E9a7041864fD;
+    address public constant liquidity = 0x228dF277C9aD435649F50D031EEeB4f5a658DB1d;
+    address public constant foundation = 0x05082bFA5310b405Bc20DE4E0293FBF4cAF45f2F;
+    address public constant developmentMarketing = 0x692125FE9c5761eAc0674E54b43bF2885287d8a0;
+    address public constant developmentVesting = 0xc892f388B794aEBb963dEb79da3e598047d3e1c8;
+    address public constant governanceVesting = 0x45CaE471F559c2be2A2737631EA2C5AdDE6177d3;
+    address public constant incentiveVesting = 0xbB5809756E049Fe427a4bC5e1a6A449385a212b3;
+    address public constant contributersVesting = 0x88043b288ed6A60DA7e851dE98091f3Bed5b738d;
 
     address[] internal addresses = [
         liquidity,
