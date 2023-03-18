@@ -2,17 +2,17 @@
 pragma solidity >=0.8.19;
 
 import { Script } from "forge-std/Script.sol";
-import { Mock } from "../src/Mock.sol";
+import { Zero } from "../src/Zero.sol";
 
 contract Deployment is Script {
-    Mock internal mock;
+    Zero internal zero;
 
-    address public constant liquidity = 0x228dF277C9aD435649F50D031EEeB4f5a658DB1d;
+    address public constant liquidity = 0x231e5C06bA8003Ed94B561aA65dD1Dbdd20a4216;
     address public constant developmentMarketing = 0x6fF9474923510C0D41d246b9f39259cbf4E5ebA3;
-    address public constant developmentVesting = 0xc892f388B794aEBb963dEb79da3e598047d3e1c8;
-    address public constant governanceVesting = 0x45CaE471F559c2be2A2737631EA2C5AdDE6177d3;
-    address public constant incentiveVesting = 0xbB5809756E049Fe427a4bC5e1a6A449385a212b3;
-    address public constant contributersVesting = 0x88043b288ed6A60DA7e851dE98091f3Bed5b738d;
+    address public constant developmentVesting = 0x2F145C93612dde51bf076114Fa8d735877C6c0DF;
+    address public constant governanceVesting = 0x15482e97358477DCBF23e5C8A6ECF08EF1B6Bc29;
+    address public constant incentiveVesting = 0x00715b7d72803CDADe639c28050c40B226F118A1;
+    address public constant contributersVesting = 0x2B9ec67d34E290Ca06bB1128A4846b2705B810DB;
 
     address[] internal addresses =
         [liquidity, developmentMarketing, developmentVesting, governanceVesting, incentiveVesting, contributersVesting];
@@ -34,7 +34,7 @@ contract Deployment is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        mock = new Mock(addresses, amounts);
+        zero = new Zero(addresses, amounts);
 
         vm.stopBroadcast();
     }

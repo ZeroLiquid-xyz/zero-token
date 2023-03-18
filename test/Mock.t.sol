@@ -2,12 +2,12 @@
 pragma solidity >=0.8.19 <0.9.0;
 
 import "forge-std/Test.sol";
-import "./../src/Mock.sol";
+import "./../src/Zero.sol";
 import "./../src/test-helpers/SigUtils.sol";
 import "./../src/test-helpers/Deposit.sol";
 
 contract ERC20Test is Test {
-    Mock internal token;
+    Zero internal token;
     SigUtils internal sigUtils;
 
     uint256 internal ownerPrivateKey;
@@ -16,40 +16,31 @@ contract ERC20Test is Test {
     address internal owner;
     address internal spender;
 
-    address public constant liquidity = 0xbFb88f83eCc626ec8384eFEbb69B5bF605d03c26;
-    address public constant foundation = 0x7fB8A16a467BbdFec3A8374720A688A3F1Fc0168;
-    address public constant developmentMarketing = 0x9FadE1CD465d4376d24dC2a7397F3C89Ab1735CC;
-    address public constant developmentVesting = 0x5f60Cc23857d6812e10028a3780e88Ee1b7A29f4;
-    address public constant governanceVesting = 0xB9FeCAC77498776E6aFc3eE00e1dD3f5230bdE20;
-    address public constant incentiveVesting = 0x7665deB06e92d87498A76526a75c9151FF9125EF;
-    address public constant contributersVesting = 0x3de28bD25F1F80DDA240DD0ABDF9E9a7041864fD;
+    address public constant liquidity = 0x231e5C06bA8003Ed94B561aA65dD1Dbdd20a4216;
+    address public constant developmentMarketing = 0x6fF9474923510C0D41d246b9f39259cbf4E5ebA3;
+    address public constant developmentVesting = 0x2F145C93612dde51bf076114Fa8d735877C6c0DF;
+    address public constant governanceVesting = 0x15482e97358477DCBF23e5C8A6ECF08EF1B6Bc29;
+    address public constant incentiveVesting = 0x00715b7d72803CDADe639c28050c40B226F118A1;
+    address public constant contributersVesting = 0x2B9ec67d34E290Ca06bB1128A4846b2705B810DB;
 
-    address[] internal addresses = [
-        liquidity,
-        foundation,
-        developmentMarketing,
-        developmentVesting,
-        governanceVesting,
-        incentiveVesting,
-        contributersVesting
-    ];
+    address[] internal addresses =
+        [liquidity, developmentMarketing, developmentVesting, governanceVesting, incentiveVesting, contributersVesting];
 
-    // 6000000 4000000 900000 29100000 42000000 15000000 3000000
-    // 6000000000000000000000000 4000000000000000000000000 900000000000000000000000 29100000000000000000000000
-    // 42000000000000000000000000 15000000000000000000000000 3000000000000000000000000
+    // 6000000 900000 29100000 42000000 19000000 3000000
+    // 6000000000000000000000000 900000000000000000000000 29100000000000000000000000
+    // 42000000000000000000000000 19000000000000000000000000 3000000000000000000000000
 
     uint256[] internal amounts = [
         6_000_000_000_000_000_000_000_000,
-        4_000_000_000_000_000_000_000_000,
         900_000_000_000_000_000_000_000,
         29_100_000_000_000_000_000_000_000,
         42_000_000_000_000_000_000_000_000,
-        15_000_000_000_000_000_000_000_000,
+        19_000_000_000_000_000_000_000_000,
         3_000_000_000_000_000_000_000_000
     ];
 
     function setUp() public {
-        token = new Mock(addresses, amounts);
+        token = new Zero(addresses, amounts);
         sigUtils = new SigUtils(token.getDomainSeparator());
 
         ownerPrivateKey = 0xA11CE;
@@ -59,7 +50,7 @@ contract ERC20Test is Test {
         // spender = vm.addr(spenderPrivateKey);
 
         owner = liquidity;
-        spender = foundation;
+        spender = developmentMarketing;
     }
 
     // testing permit
@@ -214,47 +205,38 @@ contract ERC20Test is Test {
 
 contract DepositTest is Test {
     Deposit internal deposit;
-    Mock internal token;
+    Zero internal token;
     SigUtils internal sigUtils;
 
     uint256 internal ownerPrivateKey;
     address internal owner;
 
-    address public constant liquidity = 0xbFb88f83eCc626ec8384eFEbb69B5bF605d03c26;
-    address public constant foundation = 0x7fB8A16a467BbdFec3A8374720A688A3F1Fc0168;
-    address public constant developmentMarketing = 0x9FadE1CD465d4376d24dC2a7397F3C89Ab1735CC;
-    address public constant developmentVesting = 0x5f60Cc23857d6812e10028a3780e88Ee1b7A29f4;
-    address public constant governanceVesting = 0xB9FeCAC77498776E6aFc3eE00e1dD3f5230bdE20;
-    address public constant incentiveVesting = 0x7665deB06e92d87498A76526a75c9151FF9125EF;
-    address public constant contributersVesting = 0x3de28bD25F1F80DDA240DD0ABDF9E9a7041864fD;
+    address public constant liquidity = 0x231e5C06bA8003Ed94B561aA65dD1Dbdd20a4216;
+    address public constant developmentMarketing = 0x6fF9474923510C0D41d246b9f39259cbf4E5ebA3;
+    address public constant developmentVesting = 0x2F145C93612dde51bf076114Fa8d735877C6c0DF;
+    address public constant governanceVesting = 0x15482e97358477DCBF23e5C8A6ECF08EF1B6Bc29;
+    address public constant incentiveVesting = 0x00715b7d72803CDADe639c28050c40B226F118A1;
+    address public constant contributersVesting = 0x2B9ec67d34E290Ca06bB1128A4846b2705B810DB;
 
-    address[] internal addresses = [
-        liquidity,
-        foundation,
-        developmentMarketing,
-        developmentVesting,
-        governanceVesting,
-        incentiveVesting,
-        contributersVesting
-    ];
+    address[] internal addresses =
+        [liquidity, developmentMarketing, developmentVesting, governanceVesting, incentiveVesting, contributersVesting];
 
-    // 6000000 4000000 900000 29100000 42000000 15000000 3000000
-    // 6000000000000000000000000 4000000000000000000000000 900000000000000000000000 29100000000000000000000000
-    // 42000000000000000000000000 15000000000000000000000000 3000000000000000000000000
+    // 6000000 900000 29100000 42000000 19000000 3000000
+    // 6000000000000000000000000 900000000000000000000000 29100000000000000000000000
+    // 42000000000000000000000000 19000000000000000000000000 3000000000000000000000000
 
     uint256[] internal amounts = [
         6_000_000_000_000_000_000_000_000,
-        4_000_000_000_000_000_000_000_000,
         900_000_000_000_000_000_000_000,
         29_100_000_000_000_000_000_000_000,
         42_000_000_000_000_000_000_000_000,
-        15_000_000_000_000_000_000_000_000,
+        19_000_000_000_000_000_000_000_000,
         3_000_000_000_000_000_000_000_000
     ];
 
     function setUp() public {
         deposit = new Deposit();
-        token = new Mock(addresses, amounts);
+        token = new Zero(addresses, amounts);
         sigUtils = new SigUtils(token.getDomainSeparator());
 
         // ownerPrivateKey = 0xA11CE;

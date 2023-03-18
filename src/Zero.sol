@@ -3,14 +3,14 @@ pragma solidity >=0.8.19;
 
 import "openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
-/// @title Mock
+/// @title Zero
 /// @author @ZackZeroLiquid
-contract Mock is ERC20Burnable {
+contract Zero is ERC20Burnable {
     // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
     bytes32 private constant EIP712DOMAIN_HASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;
 
-    // bytes32 private constant NAME_HASH = keccak256("Mock")
-    bytes32 private constant NAME_HASH = 0xb6719659e1320df3593ef1d62831d5830f1fdce720f856f4e26e013032b7e58c;
+    // bytes32 private constant NAME_HASH = keccak256("Zero")
+    bytes32 private constant NAME_HASH = 0x3983b4460d01879651d35150379070ca757b73fbb4d27d8b95411fbe423d6c71;
 
     // bytes32 private constant VERSION_HASH = keccak256("1")
     bytes32 private constant VERSION_HASH = 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6;
@@ -32,7 +32,7 @@ contract Mock is ERC20Burnable {
     // ERC-3009 event
     event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce);
 
-    constructor(address[] memory addresses, uint256[] memory amounts) ERC20("Mock", "MOCK") {
+    constructor(address[] memory addresses, uint256[] memory amounts) ERC20("ZeroLiquid", "ZERO") {
         _mintToAddresses(addresses, amounts);
     }
 
@@ -45,7 +45,7 @@ contract Mock is ERC20Burnable {
     function _validateSignedData(address signer, bytes32 encodeData, uint8 v, bytes32 r, bytes32 s) internal view {
         bytes32 digest = keccak256(abi.encodePacked("\x19\x01", getDomainSeparator(), encodeData));
         address recoveredAddress = ecrecover(digest, v, r, s);
-        require(recoveredAddress != address(0) && recoveredAddress == signer, "Mock:: INVALID_SIGNATURE");
+        require(recoveredAddress != address(0) && recoveredAddress == signer, "ZERO:: INVALID_SIGNATURE");
     }
 
     function getDomainSeparator() public view returns (bytes32) {
@@ -69,7 +69,7 @@ contract Mock is ERC20Burnable {
     )
         external
     {
-        require(deadline >= block.timestamp, "Mock:: AUTH_EXPIRED");
+        require(deadline >= block.timestamp, "ZERO:: AUTH_EXPIRED");
 
         bytes32 encodeData = keccak256(abi.encode(PERMIT_TYPEHASH, owner, spender, value, nonces[owner], deadline));
         nonces[owner] = nonces[owner] + 1;
@@ -91,9 +91,9 @@ contract Mock is ERC20Burnable {
     )
         external
     {
-        require(block.timestamp > validAfter, "Mock:: AUTH_NOT_YET_VALID");
-        require(block.timestamp < validBefore, "Mock:: AUTH_EXPIRED");
-        require(!authorizationState[from][nonce], "Mock:: AUTH_ALREADY_USED");
+        require(block.timestamp > validAfter, "ZERO:: AUTH_NOT_YET_VALID");
+        require(block.timestamp < validBefore, "ZERO:: AUTH_EXPIRED");
+        require(!authorizationState[from][nonce], "ZERO:: AUTH_ALREADY_USED");
 
         bytes32 encodeData =
             keccak256(abi.encode(TRANSFER_WITH_AUTHORIZATION_TYPEHASH, from, to, value, validAfter, validBefore, nonce));
