@@ -7,12 +7,12 @@ import { Zero } from "../src/Zero.sol";
 contract Deployment is Script {
     Zero internal zero;
 
-    address public constant liquidity = 0x231e5C06bA8003Ed94B561aA65dD1Dbdd20a4216;
+    address public constant liquidity = 0x8DF0EB73f815C500C49058d96F71E76aaDf548F5;
     address public constant developmentMarketing = 0x6fF9474923510C0D41d246b9f39259cbf4E5ebA3;
-    address public constant developmentVesting = 0x2F145C93612dde51bf076114Fa8d735877C6c0DF;
-    address public constant governanceVesting = 0x15482e97358477DCBF23e5C8A6ECF08EF1B6Bc29;
-    address public constant incentiveVesting = 0x00715b7d72803CDADe639c28050c40B226F118A1;
-    address public constant contributersVesting = 0x2B9ec67d34E290Ca06bB1128A4846b2705B810DB;
+    address public constant developmentVesting = 0x2ae5e92D24edcB56E780F90C7bF69F014eB0B1aA;
+    address public constant governanceVesting = 0x5b4Ec57143B57aa4716Da35b79F40CA65E980B8B;
+    address public constant incentiveVesting = 0xa78605F5390a206E09C2B91b04e6D4fBaBa0A985;
+    address public constant contributersVesting = 0xE172ae4E0861B9591a37600cFB9A67dD2FaAf835;
 
     address[] internal addresses =
         [liquidity, developmentMarketing, developmentVesting, governanceVesting, incentiveVesting, contributersVesting];

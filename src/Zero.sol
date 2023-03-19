@@ -9,8 +9,8 @@ contract Zero is ERC20Burnable {
     // keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")
     bytes32 private constant EIP712DOMAIN_HASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;
 
-    // bytes32 private constant NAME_HASH = keccak256("Zero")
-    bytes32 private constant NAME_HASH = 0x3983b4460d01879651d35150379070ca757b73fbb4d27d8b95411fbe423d6c71;
+    // bytes32 private constant NAME_HASH = keccak256("ZeroLiquid")
+    bytes32 private constant NAME_HASH = 0x9fc5531c8f04e54c6c2994c78c65c4819d190f30bfbe7a71a777e7424e10aeb4;
 
     // bytes32 private constant VERSION_HASH = keccak256("1")
     bytes32 private constant VERSION_HASH = 0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6;
@@ -33,10 +33,10 @@ contract Zero is ERC20Burnable {
     event AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce);
 
     constructor(address[] memory addresses, uint256[] memory amounts) ERC20("ZeroLiquid", "ZERO") {
-        _mintToAddresses(addresses, amounts);
+        _mintZeroTokens(addresses, amounts);
     }
 
-    function _mintToAddresses(address[] memory addresses, uint256[] memory amounts) internal {
+    function _mintZeroTokens(address[] memory addresses, uint256[] memory amounts) internal {
         for (uint256 i = 0; i < addresses.length; i++) {
             _mint(addresses[i], amounts[i]);
         }
